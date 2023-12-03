@@ -1,0 +1,21 @@
+name: Markdown Linting
+
+on: [pull_request]
+
+jobs:
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install proselint
+        run: pip install proselint
+
+      - name: Run proselint
+        run: proselint *.md
